@@ -11,4 +11,5 @@ except IndexError:
     pass
 import carla
 ```
-The code is following the sendex tutorial on youtube [Self-driving cars with Carla and Python] (https://youtu.be/J1F32aVSYaU "Youtube") 
+The code is following the sendex tutorial on youtube
+[Self-driving cars with Carla and Python](https://youtu.be/J1F32aVSYaU) 
