@@ -33,6 +33,12 @@ conda install py
 cd ~/carla97/PythonAPI/examples/
 ```
 
+for the reinforced learning install (this is not in the conda environment) 
+```
+pip install gym
+pip install matplotlib
+```
+
 ## scripts
 Use these py scripts in examples of the Python API folder e.g. ```/home/radovan/carla97/PythonAPI/examples```
 or change path in the following code  
@@ -181,4 +187,6 @@ I used
 ```python
 self.rbg_cam.set_attribute("image_size_y",str(self.im_height))
 ```
+To load new town follow the instructions from 
+https://github.com/carla-simulator/carla/issues/1943
 ---
