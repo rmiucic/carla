@@ -187,6 +187,225 @@ I used
 ```python
 self.rbg_cam.set_attribute("image_size_y",str(self.im_height))
 ```
+## how to 
+### how to load new map in CARLA 
 To load new town follow the instructions from 
 https://github.com/carla-simulator/carla/issues/1943
+
+in first terminal open carla
+```
+<carla install folder>$ ./CarlaUE4.sh
+```
+in second terminal start conda environment with python 3.5
+```
+$ source activate py35
+```
+
+carla config utility. The following command will list of what is posible to change in real time
+```
+<carla install folder>/PythonAPI/util$ python config.py -h
+```
+the otput looks like 
+```
+(py35) radovan@radovan-GS63VR-6RF:~/carla97/PythonAPI/util$ python config.py -h
+usage: config.py [-h] [--host H] [-p P] [-d] [-m MAP] [-r] [--delta-seconds S]
+                 [--fps N] [--rendering] [--no-rendering] [--no-sync]
+                 [--weather WEATHER] [-i] [-l] [-b FILTER]
+
+Configure and inspect an instance of CARLA Simulator. For further details,
+visit https://carla.readthedocs.io/en/latest/configuring_the_simulation/
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --host H              IP of the host CARLA Simulator (default: localhost)
+  -p P, --port P        TCP port of CARLA Simulator (default: 2000)
+  -d, --default         set default settings
+  -m MAP, --map MAP     load a new map, use --list to see available maps
+  -r, --reload-map      reload current map
+  --delta-seconds S     set fixed delta seconds, zero for variable frame rate
+  --fps N               set fixed FPS, zero for variable FPS (similar to
+                        --delta-seconds)
+  --rendering           enable rendering
+  --no-rendering        disable rendering
+  --no-sync             disable synchronous mode
+  --weather WEATHER     set weather preset, use --list to see available
+                        presets
+  -i, --inspect         inspect simulation
+  -l, --list            list available options
+  -b FILTER, --list-blueprints FILTER
+                        list available blueprints matching FILTER (use '*' to
+                        list them all)
+```
+to change town to Town03
+```
+(py35) radovan@radovan-GS63VR-6RF:~/carla97/PythonAPI/util$ python config.py -m Town03
+```
+to change weather town to Town03
+```
+(py35) radovan@radovan-GS63VR-6RF:~/carla97/PythonAPI/util$ python config.py -m Town03
+```
+
+list towns and weather
+```
+(py35) radovan@radovan-GS63VR-6RF:~/carla97/PythonAPI/util$ python config.py --weather WetCloudySunset
+weather presets:
+
+    ClearNoon, ClearSunset, CloudyNoon, CloudySunset, Default,
+    HardRainNoon, HardRainSunset, MidRainSunset, MidRainyNoon,
+    SoftRainNoon, SoftRainSunset, WetCloudyNoon, WetCloudySunset,
+    WetNoon, WetSunset.
+
+available maps:
+
+    Town01, Town02, Town03, Town04, Town05.
+```
+to list all blueprints
+```
+(py35) radovan@radovan-GS63VR-6RF:~/carla97/PythonAPI/util$ python config.py --list-blueprints '*'
+available blueprints (filter '*'):
+
+    controller.ai.walker
+    sensor.camera.depth
+    sensor.camera.rgb
+    sensor.camera.semantic_segmentation
+    sensor.lidar.ray_cast
+    sensor.other.collision
+    sensor.other.gnss
+    sensor.other.imu
+    sensor.other.lane_invasion
+    sensor.other.obstacle
+    sensor.other.radar
+    static.prop.advertisement
+    static.prop.atm
+    static.prop.barbeque
+    static.prop.barrel
+    static.prop.bench01
+    static.prop.bench02
+    static.prop.bench03
+    static.prop.bike helmet
+    static.prop.bikeparking
+    static.prop.bin
+    static.prop.box01
+    static.prop.box02
+    static.prop.box03
+    static.prop.briefcase
+    static.prop.brokentile01
+    static.prop.brokentile02
+    static.prop.brokentile03
+    static.prop.brokentile04
+    static.prop.busstop
+    static.prop.chainbarrier
+    static.prop.chainbarrierend
+    static.prop.clothcontainer
+    static.prop.clothesline
+    static.prop.colacan
+    static.prop.constructioncone
+    static.prop.container
+    static.prop.creasedbox01
+    static.prop.creasedbox02
+    static.prop.creasedbox03
+    static.prop.dirtdebris01
+    static.prop.dirtdebris02
+    static.prop.dirtdebris03
+    static.prop.doghouse
+    static.prop.fountain
+    static.prop.garbage01
+    static.prop.garbage02
+    static.prop.garbage03
+    static.prop.garbage04
+    static.prop.garbage05
+    static.prop.garbage06
+    static.prop.gardenlamp
+    static.prop.glasscontainer
+    static.prop.gnome
+    static.prop.guitarcase
+    static.prop.ironplank
+    static.prop.kiosk_01
+    static.prop.mailbox
+    static.prop.maptable
+    static.prop.mobile
+    static.prop.motorhelmet
+    static.prop.pergola
+    static.prop.plantpot01
+    static.prop.plantpot02
+    static.prop.plantpot03
+    static.prop.plantpot04
+    static.prop.plantpot05
+    static.prop.plantpot06
+    static.prop.plantpot07
+    static.prop.plantpot08
+    static.prop.plasticbag
+    static.prop.plasticchair
+    static.prop.plastictable
+    static.prop.platformgarbage01
+    static.prop.purse
+    static.prop.shop01
+    static.prop.shoppingbag
+    static.prop.shoppingcart
+    static.prop.shoppingtrolley
+    static.prop.slide
+    static.prop.streetbarrier
+    static.prop.streetfountain
+    static.prop.streetsign
+    static.prop.streetsign01
+    static.prop.streetsign04
+    static.prop.swing
+    static.prop.swingcouch
+    static.prop.table
+    static.prop.trafficcone01
+    static.prop.trafficcone02
+    static.prop.trafficwarning
+    static.prop.trampoline
+    static.prop.trashbag
+    static.prop.trashcan01
+    static.prop.trashcan02
+    static.prop.trashcan03
+    static.prop.trashcan04
+    static.prop.trashcan05
+    static.prop.travelcase
+    static.prop.vendingmachine
+    static.prop.wateringcan
+    static.trigger.friction
+    vehicle.audi.a2
+    vehicle.audi.etron
+    vehicle.audi.tt
+    vehicle.bh.crossbike
+    vehicle.bmw.grandtourer
+    vehicle.bmw.isetta
+    vehicle.carlamotors.carlacola
+    vehicle.chevrolet.impala
+    vehicle.citroen.c3
+    vehicle.diamondback.century
+    vehicle.dodge_charger.police
+    vehicle.ford.mustang
+    vehicle.gazelle.omafiets
+    vehicle.harley-davidson.low rider
+    vehicle.jeep.wrangler_rubicon
+    vehicle.kawasaki.ninja
+    vehicle.lincoln.mkz2017
+    vehicle.mercedes-benz.coupe
+    vehicle.mini.cooperst
+    vehicle.nissan.micra
+    vehicle.nissan.patrol
+    vehicle.seat.leon
+    vehicle.tesla.model3
+    vehicle.toyota.prius
+    vehicle.volkswagen.t2
+    vehicle.yamaha.yzf
+    walker.pedestrian.0001
+    walker.pedestrian.0002
+    walker.pedestrian.0003
+    walker.pedestrian.0004
+    walker.pedestrian.0005
+    walker.pedestrian.0006
+    walker.pedestrian.0007
+    walker.pedestrian.0008
+    walker.pedestrian.0009
+    walker.pedestrian.0010
+    walker.pedestrian.0011
+    walker.pedestrian.0012
+    walker.pedestrian.0013
+    walker.pedestrian.0014
+
+```
 ---
