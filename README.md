@@ -242,12 +242,13 @@ to change town to Town03
 ```
 to change weather town to Town03
 ```
-(py35) radovan@radovan-GS63VR-6RF:~/carla97/PythonAPI/util$ python config.py -m Town03
+(py35) radovan@radovan-GS63VR-6RF:~/carla97/PythonAPI/util$ python config.py --weather WetCloudySunset
+set weather preset 'WetCloudySunset'.
 ```
 
 list towns and weather
 ```
-(py35) radovan@radovan-GS63VR-6RF:~/carla97/PythonAPI/util$ python config.py --weather WetCloudySunset
+(py35) radovan@radovan-GS63VR-6RF:~/carla97/PythonAPI/util$ python config.py --list
 weather presets:
 
     ClearNoon, ClearSunset, CloudyNoon, CloudySunset, Default,
